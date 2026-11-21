@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
@@ -12,6 +13,7 @@ import Search from './pages/Search'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Profile from './pages/Profile'
+import GalleryManager from './pages/GalleryManager'
 
 import './App.css'
 
@@ -28,6 +30,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/gallery" element={<GalleryManager />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import { getProducts } from '../services/api'
@@ -6,11 +7,15 @@ function Catalog() {
   const [products, setProducts] = useState([])
   const [category, setCategory] = useState('All')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     getProducts()
-      .then(setProducts)
-      .catch(error => console.error(error))
+      .then(data => setProducts(data))
+      .catch(error => {
+        console.error(error)
+        setError('Produk gagal dimuat. Silakan coba lagi.')
+      })
       .finally(() => setLoading(false))
   }, [])
 
@@ -45,12 +50,22 @@ function Catalog() {
 
       {loading ? (
         <p>Loading products...</p>
-      ) : (
+      ) : error ? (
+        <p>{error}</p>
+      ) : filteredProducts.length > 0 ? (
         <div className="product-grid">
           {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={{
+                ...product,
+                image: product.image
+              }}
+            />
           ))}
         </div>
+      ) : (
+        <p>Produk tidak ditemukan.</p>
       )}
     </main>
   )

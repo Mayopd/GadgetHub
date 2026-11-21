@@ -1,261 +1,417 @@
 
 const products = [
-  // =====================================
+  // =========================
   // LAPTOP
-  // =====================================
+  // =========================
   {
     id: 1,
-    name: 'MacBook Air M3',
-    category: 'Laptop',
-    brand: 'Apple',
+    name: "MacBook Air M3",
+    category: "Laptop",
+    brand: "Apple",
     price: 18999000,
-    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600',
-    description: 'Laptop Apple dengan desain tipis dan ringan untuk produktivitas sehari-hari.'
+    image: "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
+    images: [
+      "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
+      "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    ],
+    description: "Laptop Apple dengan chip M3, desain tipis, dan performa yang mendukung kebutuhan produktivitas.",
+    specifications: {
+      "Prosesor": "Apple M3",
+      "CPU": "8-core",
+      "GPU": "8-core atau 10-core",
+      "Layar": "13,6 inci Liquid Retina",
+      "Resolusi": "2560 x 1664 piksel",
+      "RAM": "8 GB / 16 GB / 24 GB (tergantung konfigurasi)",
+      "Penyimpanan": "256 GB / 512 GB / 1 TB / 2 TB SSD",
+      "Kamera": "1080p FaceTime HD",
+      "Konektivitas": "Wi-Fi 6E, Bluetooth 5.3",
+      "Port": "MagSafe 3, 2x Thunderbolt / USB 4, jack 3,5 mm",
+      "Sistem Operasi": "macOS"
+    }
   },
   {
     id: 2,
-    name: 'ASUS ROG Zephyrus G14',
-    category: 'Laptop',
-    brand: 'ASUS',
-    price: 24999000,
-    image: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600',
-    description: 'Laptop ASUS dengan performa tinggi untuk gaming dan produktivitas.'
+    name: "ASUS ROG Zephyrus G14",
+    category: "Laptop",
+    brand: "ASUS",
+    price: 29999000,
+    image: "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
+    images: [
+      "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
+      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=600",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600"
+    ],
+    description: "Laptop gaming dengan desain ringkas dan performa tinggi untuk gaming maupun pekerjaan berat.",
+    specifications: {
+      "Prosesor": "AMD Ryzen (tergantung varian)",
+      "GPU": "NVIDIA GeForce RTX (tergantung varian)",
+      "Layar": "14 inci",
+      "Panel": "ROG Nebula Display (tergantung varian)",
+      "RAM": "Tergantung konfigurasi",
+      "Penyimpanan": "SSD NVMe (kapasitas tergantung varian)",
+      "Audio": "Speaker dengan dukungan Dolby Atmos",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Sistem Operasi": "Windows 11"
+    }
   },
-  {
-    id: 21,
-    name: 'ASUS Vivobook 14 A1404VAP',
-    category: 'Laptop',
-    brand: 'ASUS',
-    price: 10199000,
-    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600',
-    description: 'Laptop ASUS dengan desain ringkas untuk belajar dan bekerja.'
-  },
-  {
-    id: 22,
-    name: 'Lenovo IdeaPad Slim 3 14IRU8',
-    category: 'Laptop',
-    brand: 'Lenovo',
-    price: 9649000,
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600',
-    description: 'Laptop Lenovo untuk kebutuhan komputasi dan produktivitas sehari-hari.'
-  },
-  {
-    id: 23,
-    name: 'HP 14 EP0261TU',
-    category: 'Laptop',
-    brand: 'HP',
-    price: 8997000,
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600',
-    description: 'Laptop HP untuk mendukung aktivitas belajar dan pekerjaan.'
-  },
-
-  // =====================================
-  // SMARTPHONE
-  // =====================================
   {
     id: 3,
-    name: 'iPhone 16',
-    category: 'Smartphone',
-    brand: 'Apple',
-    price: 14999000,
-    image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600',
-    description: 'Smartphone Apple dengan desain modern dan performa tinggi.'
+    name: "Lenovo IdeaPad Slim 3",
+    category: "Laptop",
+    brand: "Lenovo",
+    price: 8999000,
+    image: "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
+    images: [
+      "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600"
+    ],
+    description: "Laptop untuk kebutuhan sehari-hari, belajar, dan pekerjaan dengan desain yang praktis.",
+    specifications: {
+      "Prosesor": "Intel Core atau AMD Ryzen (tergantung varian)",
+      "Layar": "Tersedia dalam beberapa ukuran, termasuk 14 dan 15,6 inci",
+      "Resolusi": "Full HD pada varian tertentu",
+      "RAM": "Tergantung konfigurasi",
+      "Penyimpanan": "SSD (kapasitas tergantung varian)",
+      "Grafis": "Integrated Graphics",
+      "Kamera": "HD Webcam",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Port": "USB-A, USB-C, HDMI, audio jack (tergantung varian)",
+      "Sistem Operasi": "Windows 11"
+    }
   },
   {
     id: 4,
-    name: 'Samsung Galaxy S25',
-    category: 'Smartphone',
-    brand: 'Samsung',
-    price: 15999000,
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600',
-    description: 'Smartphone Samsung untuk komunikasi, hiburan, dan produktivitas.'
+    name: "ASUS Vivobook 14",
+    category: "Laptop",
+    brand: "ASUS",
+    price: 9999000,
+    image: "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
+    images: [
+      "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    ],
+    description: "Laptop 14 inci dengan desain modern yang cocok untuk produktivitas dan aktivitas sehari-hari.",
+    specifications: {
+      "Prosesor": "Intel Core atau AMD Ryzen (tergantung varian)",
+      "Layar": "14 inci",
+      "Resolusi": "Full HD atau lebih tinggi (tergantung varian)",
+      "RAM": "Tergantung konfigurasi",
+      "Penyimpanan": "SSD NVMe (kapasitas tergantung varian)",
+      "Grafis": "Integrated Graphics",
+      "Kamera": "HD Webcam",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Port": "USB-A, USB-C, HDMI, audio jack",
+      "Sistem Operasi": "Windows 11"
+    }
   },
-  {
-    id: 17,
-    name: 'Samsung Galaxy A57 5G',
-    category: 'Smartphone',
-    brand: 'Samsung',
-    price: 7901900,
-    image: 'https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=600',
-    description: 'Smartphone Samsung dengan dukungan jaringan 5G.'
-  },
-  {
-    id: 18,
-    name: 'Redmi Note 17 5G',
-    category: 'Smartphone',
-    brand: 'Xiaomi',
-    price: 4599000,
-    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600',
-    description: 'Smartphone Xiaomi untuk kebutuhan komunikasi dan hiburan.'
-  },
-  {
-    id: 19,
-    name: 'OPPO Reno16 F 5G',
-    category: 'Smartphone',
-    brand: 'OPPO',
-    price: 7799000,
-    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&sat=-100',
-    description: 'Smartphone OPPO dengan desain modern dan dukungan jaringan 5G.'
-  },
-  {
-    id: 20,
-    name: 'vivo Y19s GT 5G',
-    category: 'Smartphone',
-    brand: 'vivo',
-    price: 2199000,
-    image: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600',
-    description: 'Smartphone vivo untuk kebutuhan komunikasi dan hiburan.'
-  },
-
-  // =====================================
-  // AUDIO
-  // =====================================
   {
     id: 5,
-    name: 'Sony WH-1000XM5',
-    category: 'Audio',
-    brand: 'Sony',
-    price: 4999000,
-    image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600',
-    description: 'Headphone Sony untuk menikmati musik dengan nyaman.'
-  },
-  {
-    id: 6,
-    name: 'JBL Flip 6',
-    category: 'Audio',
-    brand: 'JBL',
-    price: 1899000,
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600',
-    description: 'Speaker portabel JBL untuk menemani aktivitas sehari-hari.'
+    name: "Lenovo Legion 7",
+    category: "Laptop",
+    brand: "Lenovo",
+    price: 29999000,
+    image: "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
+    images: [
+      "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
+      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=600",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600"
+    ],
+    description: "Laptop gaming Lenovo Legion dengan performa tinggi untuk gaming dan pekerjaan yang membutuhkan kemampuan komputasi besar.",
+    specifications: {
+      "Prosesor": "Intel Core i9 generasi ke-14 (tergantung konfigurasi)",
+      "GPU": "NVIDIA GeForce RTX (tergantung konfigurasi)",
+      "Layar": "16 inci",
+      "Resolusi": "2560 x 1600 piksel pada varian tertentu",
+      "Refresh Rate": "Hingga 240 Hz pada varian tertentu",
+      "RAM": "DDR5 (kapasitas tergantung konfigurasi)",
+      "Penyimpanan": "SSD NVMe",
+      "Audio": "Stereo Speaker",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Sistem Operasi": "Windows 11"
+    }
   },
 
-  // =====================================
-  // TABLET
-  // =====================================
+  // =========================
+  // SMARTPHONE
+  // =========================
+  {
+    id: 6,
+    name: "iPhone 16",
+    category: "Smartphone",
+    brand: "Apple",
+    price: 14999000,
+    image: "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
+    images: [
+      "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600"
+    ],
+    description: "Smartphone Apple dengan kamera berkualitas, performa responsif, dan fitur modern.",
+    specifications: {
+      "Prosesor": "Apple A18",
+      "Layar": "6,1 inci Super Retina XDR OLED",
+      "Resolusi": "2556 x 1179 piksel",
+      "Refresh Rate": "60 Hz",
+      "Kamera Belakang": "48 MP Fusion + 12 MP Ultra Wide",
+      "Kamera Depan": "12 MP TrueDepth",
+      "Perekaman Video": "Hingga 4K Dolby Vision",
+      "Penyimpanan": "128 GB / 256 GB / 512 GB",
+      "Konektivitas": "5G, Wi-Fi 7, Bluetooth 5.3",
+      "Port": "USB-C",
+      "Ketahanan": "IP68",
+      "Sistem Operasi": "iOS"
+    }
+  },
   {
     id: 7,
-    name: 'iPad Air',
-    category: 'Tablet',
-    brand: 'Apple',
-    price: 9999000,
-    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600',
-    description: 'Tablet Apple untuk belajar, bekerja, dan menikmati hiburan.'
+    name: "iPhone 18 Pro Max",
+    category: "Smartphone",
+    brand: "Apple",
+    price: 24999000,
+    image: "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
+    images: [
+      "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600"
+    ],
+    description: "Smartphone premium Apple dengan layar besar dan fitur unggulan.",
+    specifications: {
+      "Prosesor": "Apple A20 Pro",
+      "Layar": "6,9 inci Super Retina XDR OLED",
+      "Resolusi": "2868 x 1320 piksel",
+      "Refresh Rate": "ProMotion hingga 120 Hz",
+      "Kamera Belakang": "Sistem kamera Pro Fusion 48 MP",
+      "Kamera Depan": "18 MP Center Stage",
+      "Penyimpanan": "256 GB / 512 GB / 1 TB / 2 TB",
+      "Konektivitas": "5G, Wi-Fi 7, Bluetooth 6",
+      "Port": "USB-C",
+      "Ketahanan": "IP68",
+      "Sistem Operasi": "iOS"
+    }
   },
   {
     id: 8,
-    name: 'Samsung Galaxy Tab S10',
-    category: 'Tablet',
-    brand: 'Samsung',
-    price: 10999000,
-    image: 'https://images.unsplash.com/photo-1561154464-0df4b3ffc6b0?w=600',
-    description: 'Tablet Samsung dengan layar luas untuk berbagai kebutuhan.'
+    name: "Xiaomi 11T Pro",
+    category: "Smartphone",
+    brand: "Xiaomi",
+    price: 6999000,
+    image: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
+    images: [
+      "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    ],
+    description: "Smartphone Xiaomi dengan performa bertenaga dan kemampuan pengisian daya cepat.",
+    specifications: {
+      "Prosesor": "Qualcomm Snapdragon 888 5G",
+      "Layar": "6,67 inci AMOLED",
+      "Resolusi": "2400 x 1080 piksel",
+      "Refresh Rate": "120 Hz",
+      "Kamera Belakang": "108 MP + 8 MP Ultra Wide + 5 MP Telemacro",
+      "Kamera Depan": "16 MP",
+      "RAM": "8 GB / 12 GB",
+      "Penyimpanan": "128 GB / 256 GB",
+      "Baterai": "5000 mAh",
+      "Pengisian Daya": "120 W Xiaomi HyperCharge",
+      "Konektivitas": "5G, Wi-Fi 6, Bluetooth 5.2",
+      "Sistem Operasi": "MIUI berbasis Android"
+    }
   },
-  {
-    id: 24,
-    name: 'Xiaomi Pad 8 Pro',
-    category: 'Tablet',
-    brand: 'Xiaomi',
-    price: 9674700,
-    image: 'https://images.unsplash.com/photo-1589739900243-4b52cd9dd8df?w=600',
-    description: 'Tablet Xiaomi untuk produktivitas dan hiburan.'
-  },
-  {
-    id: 25,
-    name: 'Samsung Galaxy Tab S9',
-    category: 'Tablet',
-    brand: 'Samsung',
-    price: 11999000,
-    image: 'https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=600',
-    description: 'Tablet Samsung untuk menunjang kegiatan belajar dan bekerja.'
-  },
-
-  // =====================================
-  // SMARTWATCH
-  // =====================================
   {
     id: 9,
-    name: 'Apple Watch Series 10',
-    category: 'Smartwatch',
-    brand: 'Apple',
-    price: 6999000,
-    image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600',
-    description: 'Jam pintar Apple untuk aktivitas dan notifikasi sehari-hari.'
+    name: "Google Pixel 10 Pro",
+    category: "Smartphone",
+    brand: "Google",
+    price: 16999000,
+    image: "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
+    images: [
+      "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
+    ],
+    description: "Smartphone Google dengan pengalaman Android dan fitur fotografi berbasis komputasi.",
+    specifications: {
+      "Prosesor": "Google Tensor G5",
+      "Layar": "6,3 inci Super Actua LTPO OLED",
+      "Resolusi": "1280 x 2856 piksel",
+      "Refresh Rate": "1–120 Hz",
+      "RAM": "16 GB",
+      "Penyimpanan": "128 GB / 256 GB / 512 GB / 1 TB (tergantung wilayah)",
+      "Kamera Belakang": "Sistem tiga kamera: utama, ultra-wide, dan telephoto",
+      "Kamera Depan": "42 MP",
+      "Baterai": "4870 mAh (tipikal)",
+      "Konektivitas": "5G, Wi-Fi, Bluetooth",
+      "Ketahanan": "IP68",
+      "Sistem Operasi": "Android"
+    }
   },
   {
     id: 10,
-    name: 'Samsung Galaxy Watch',
-    category: 'Smartwatch',
-    brand: 'Samsung',
-    price: 3999000,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
-    description: 'Smartwatch Samsung untuk mendukung aktivitas sehari-hari.'
+    name: "Samsung Galaxy J2 Prime",
+    category: "Smartphone",
+    brand: "Samsung",
+    price: 1200000,
+    image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
+    images: [
+      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
+    ],
+    description: "Smartphone Samsung generasi lama untuk kebutuhan komunikasi dan penggunaan dasar.",
+    specifications: {
+      "Prosesor": "MediaTek MT6737T Quad-core",
+      "Layar": "5 inci PLS TFT",
+      "Resolusi": "960 x 540 piksel",
+      "Kamera Belakang": "8 MP",
+      "Kamera Depan": "5 MP dengan LED Flash",
+      "RAM": "1,5 GB",
+      "Penyimpanan": "8 GB",
+      "Baterai": "2600 mAh",
+      "Konektivitas": "4G LTE, Wi-Fi, Bluetooth 4.2",
+      "Port": "Micro USB 2.0",
+      "Sistem Operasi": "Android"
+    }
   },
 
-  // =====================================
-  // ACCESSORIES
-  // =====================================
+  // =========================
+  // GADGET LAINNYA
+  // =========================
   {
     id: 11,
-    name: 'Logitech MX Master 3S',
-    category: 'Accessories',
-    brand: 'Logitech',
-    price: 1599000,
-    image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=600',
-    description: 'Mouse wireless Logitech untuk menunjang produktivitas.'
+    name: "iPad Air",
+    category: "Tablet",
+    brand: "Apple",
+    price: 9999000,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
+    images: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600",
+      "https://images.unsplash.com/photo-1561154464-82e9aab32f4c?w=600"
+    ],
+    description: "Tablet Apple untuk belajar, bekerja, menggambar, dan menikmati konten multimedia.",
+    specifications: {
+      "Chip": "Apple Silicon (tergantung generasi)",
+      "Layar": "Liquid Retina",
+      "Ukuran Layar": "Tersedia dalam ukuran 11 inci dan 13 inci pada generasi tertentu",
+      "Kamera Belakang": "12 MP",
+      "Kamera Depan": "12 MP (tergantung generasi)",
+      "Penyimpanan": "Tergantung generasi dan konfigurasi",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Port": "USB-C",
+      "Dukungan Aksesori": "Apple Pencil dan Magic Keyboard (tergantung generasi)",
+      "Sistem Operasi": "iPadOS"
+    }
   },
   {
     id: 12,
-    name: 'Keychron K2',
-    category: 'Accessories',
-    brand: 'Keychron',
-    price: 1299000,
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600',
-    description: 'Keyboard mekanikal Keychron dengan desain ringkas.'
+    name: "PlayStation 5",
+    category: "Gaming",
+    brand: "Sony",
+    price: 8999000,
+    image: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
+    images: [
+      "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600",
+      "https://images.unsplash.com/photo-1622297845775-5ff3fef71d13?w=600"
+    ],
+    description: "Konsol permainan dari Sony dengan dukungan grafis dan performa untuk bermain game.",
+    specifications: {
+      "CPU": "AMD Ryzen Zen 2, 8-core",
+      "GPU": "AMD RDNA 2",
+      "Performa GPU": "10,3 TFLOPS",
+      "Memori": "16 GB GDDR6",
+      "Penyimpanan Internal": "SSD 825 GB atau 1 TB (tergantung model)",
+      "Resolusi": "Mendukung hingga 4K",
+      "Frame Rate": "Hingga 120 fps pada game yang mendukung",
+      "Audio": "Tempest 3D AudioTech",
+      "Konektivitas": "Wi-Fi, Bluetooth, Ethernet",
+      "Port": "USB-A, USB-C, HDMI 2.1",
+      "Media": "Blu-ray Disc pada edisi Disc"
+    }
   },
-
-  // =====================================
-  // CAMERA
-  // =====================================
   {
     id: 13,
-    name: 'Sony Alpha A6400',
-    category: 'Camera',
-    brand: 'Sony',
-    price: 11999000,
-    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600',
-    description: 'Kamera Sony untuk fotografi dan pembuatan konten.'
+    name: "Sony Alpha A7 IV",
+    category: "Kamera",
+    brand: "Sony",
+    price: 34999000,
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600",
+      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600"
+    ],
+    description: "Kamera mirrorless full-frame untuk kebutuhan fotografi dan pembuatan video.",
+    specifications: {
+      "Sensor": "Full-frame Exmor R CMOS",
+      "Resolusi": "33 MP",
+      "Prosesor": "BIONZ XR",
+      "Autofokus": "Fast Hybrid AF dengan Real-time Tracking",
+      "ISO": "100–51.200 (dapat diperluas)",
+      "Perekaman Video": "4K hingga 60p",
+      "Stabilisasi": "5-axis In-body Image Stabilization",
+      "Layar": "3 inci LCD vari-angle",
+      "Jendela Bidik": "OLED Electronic Viewfinder",
+      "Media Penyimpanan": "Dual Slot SD / CFexpress Type A",
+      "Konektivitas": "Wi-Fi, Bluetooth",
+      "Mount": "Sony E-mount"
+    }
   },
   {
     id: 14,
-    name: 'Canon EOS R50',
-    category: 'Camera',
-    brand: 'Canon',
-    price: 10999000,
-    image: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600',
-    description: 'Kamera mirrorless Canon untuk fotografi sehari-hari.'
+    name: "Sony WH-1000XM5",
+    category: "Audio",
+    brand: "Sony",
+    price: 4999000,
+    image: "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
+    images: [
+      "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600"
+    ],
+    description: "Headphone nirkabel dengan fitur peredam kebisingan dan kualitas audio yang baik.",
+    specifications: {
+      "Tipe": "Wireless Over-ear Headphones",
+      "Driver": "30 mm",
+      "Peredam Kebisingan": "Active Noise Cancelling",
+      "Konektivitas": "Bluetooth 5.2",
+      "Codec": "SBC, AAC, LDAC",
+      "Mikrofon": "Multiple microphones dengan noise reduction",
+      "Daya Tahan Baterai": "Hingga 30 jam dengan ANC aktif",
+      "Pengisian Daya": "USB-C",
+      "Fitur": "Speak-to-Chat dan Adaptive Sound Control",
+      "Berat": "Sekitar 250 gram"
+    }
   },
-
-  // =====================================
-  // GAMING
-  // =====================================
   {
     id: 15,
-    name: 'PlayStation 5',
-    category: 'Gaming',
-    brand: 'Sony',
-    price: 8999000,
-    image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600',
-    description: 'Konsol PlayStation untuk menikmati berbagai permainan.'
-  },
-  {
-    id: 16,
-    name: 'Xbox Wireless Controller',
-    category: 'Gaming',
-    brand: 'Microsoft',
-    price: 899000,
-    image: 'https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=600',
-    description: 'Controller Xbox untuk pengalaman bermain game.'
+    name: "JBL Flip 6",
+    category: "Audio",
+    brand: "JBL",
+    price: 1799000,
+    image: "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
+    images: [
+      "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    ],
+    description: "Speaker Bluetooth portabel dengan desain ringkas untuk mendengarkan musik.",
+    specifications: {
+      "Tipe": "Portable Bluetooth Speaker",
+      "Output Daya": "30 W RMS",
+      "Driver": "45 x 80 mm woofer dan 16 mm tweeter",
+      "Respons Frekuensi": "63 Hz – 20 kHz",
+      "Konektivitas": "Bluetooth 5.1",
+      "Ketahanan Air dan Debu": "IP67",
+      "Daya Tahan Baterai": "Hingga 12 jam",
+      "Pengisian Daya": "USB-C",
+      "Fitur": "JBL PartyBoost",
+      "Berat": "Sekitar 550 gram"
+    }
   }
-]
+];
 
-module.exports = products
+module.exports = products;

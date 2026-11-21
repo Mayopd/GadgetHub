@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom'
 
 function Profile() {
@@ -6,11 +7,12 @@ function Profile() {
       <div className="page-heading">
         <span>YOUR APPLICATION</span>
         <h1>Profile</h1>
-        <p>Informasi mengenai aplikasi GadgetHub.</p>
+        <p>Informasi dan pengelolaan aplikasi GadgetHub.</p>
       </div>
 
       <div className="about-content">
         <h2>GadgetHub</h2>
+
         <p>
           GadgetHub merupakan katalog perangkat elektronik
           yang menyediakan informasi produk berdasarkan
@@ -22,9 +24,15 @@ function Profile() {
           Progressive Web App.
         </p>
 
-        <Link to="/about" className="primary-button">
-          About GadgetHub
-        </Link>
+        <div className="profile-links">
+          <Link to="/about" className="primary-button">
+            About GadgetHub
+          </Link>
+
+          <Link to="/gallery" className="primary-button gallery-link-button">
+            🖼 Kelola Galeri Produk
+          </Link>
+        </div>
       </div>
     </main>
   )
