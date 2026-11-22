@@ -3,8 +3,19 @@ import { Link, NavLink } from 'react-router-dom'
 function Navbar() {
   return (
     <header className="navbar">
-      <Link to="/" className="logo">
-        Gadget<span>Hub.</span>
+      <Link
+        to="/"
+        className="logo"
+        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+      >
+        <img
+          src="/logo.svg"
+          alt="GadgetHub"
+          style={{ height: '40px', width: 'auto' }}
+        />
+        <div>
+          Gadget<span>Hub</span>
+        </div>
       </Link>
 
       <nav>

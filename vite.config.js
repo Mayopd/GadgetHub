@@ -14,6 +14,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       filename: 'sw.js',
+      includeAssets: ['icons/favicon.svg', 'icons/apple-touch-icon.png'],
 
       workbox: {
         runtimeCaching: [
@@ -39,16 +40,28 @@ export default defineConfig({
         name: 'GadgetHub',
         short_name: 'GadgetHub',
         description: 'Katalog perangkat elektronik GadgetHub',
-        theme_color: '#142B4A',
+        theme_color: '#1d4ed8',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',
         icons: [
           {
-            src: '/pwa-icon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
+            src: '/icons/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
             purpose: 'any'
+          },
+          {
+            src: '/icons/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/icons/maskable-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ]
       }
