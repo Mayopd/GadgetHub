@@ -229,7 +229,7 @@ const products = [
     images: [
       "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
       "https://wifihifi.com/wp-content/uploads/2025/09/google-pixel-10-pro-back-hand-angle.jpg",
-      "https://media.wired.com/photos/68aeaf0ccb3116c38839e10b/master/w_2560%2Cc_limit/Google%2520Pixel%252010%2520Series%2520SOURCE%2520Julian%2520Chokkattu.jpg"
+      
     ],
     description: "Smartphone Google dengan pengalaman Android dan fitur fotografi berbasis komputasi.",
     specifications: {
