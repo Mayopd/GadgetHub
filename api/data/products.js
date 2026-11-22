@@ -12,8 +12,8 @@ const products = [
     image: "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
     images: [
       "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
-      "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600",
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2paD9AQbo3tZ7wGsYAyweLB_DQjk6BEnSor8xxQ9vlxd_X0kemdV2JOU&s=10",
+      "https://cdnpro.eraspace.com/media/mageplaza/blog/post/s/p/spesifikasi_macbook_air_m3_primary_1.jpg"
     ],
     description: "Laptop Apple dengan chip M3, desain tipis, dan performa yang mendukung kebutuhan produktivitas.",
     specifications: {
@@ -39,8 +39,8 @@ const products = [
     image: "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
     images: [
       "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
-      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=600",
-      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4jX0maTl4yUal_MjDu6aH2CFCxxoEiY-cds1ZA95pgwh0ZgfAl3d0L9C&s=10",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXvzbT6ne6RESDVJGBgyOtZ8MI1lCCbpEo3mpRFIa1JxaOjLpU4R0SQJE&s=10"
     ],
     description: "Laptop gaming dengan desain ringkas dan performa tinggi untuk gaming maupun pekerjaan berat.",
     specifications: {
@@ -64,8 +64,8 @@ const products = [
     image: "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
     images: [
       "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
-      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600"
+      "https://plazait.co.id/uploads/products/gallery/lenovo-ideapad-slim-3-14arp10-83k6008aid-ryzen-5-7535hs-amd-radeon-graphics-cosm-1776141211-140.jpg",
+      "https://cdn.mos.cms.futurecdn.net/xYyfMxRBkMTysBNqZbaWo.jpg"
     ],
     description: "Laptop untuk kebutuhan sehari-hari, belajar, dan pekerjaan dengan desain yang praktis.",
     specifications: {
@@ -90,8 +90,8 @@ const products = [
     image: "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
     images: [
       "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
-      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600",
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+      "https://plazait.co.id/uploads/products/gallery/asus-vivobook-14-a1404vap-vips5155m-core-5-120u-16gb-512gb-terra-cotta-1774864519-823.webp",
+      "https://plazait.co.id/uploads/products/gallery/asus-vivobook-14-a1404vap-vips5155m-core-5-120u-16gb-512gb-terra-cotta-1774864519-813.webp"
     ],
     description: "Laptop 14 inci dengan desain modern yang cocok untuk produktivitas dan aktivitas sehari-hari.",
     specifications: {
@@ -116,8 +116,8 @@ const products = [
     image: "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
     images: [
       "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
-      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=600",
-      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlnaQjewuQhjRw6lIsyJOAByYgfKoJwN7Ry2CQ8xQXe5peKEA5JcEuIZ4&s=10",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2jChTabDxdZfeyd85KUrqDfz9ETZoYDnwxwpMyz7xpbEJXtxcL-OoZ4D&s=10"
     ],
     description: "Laptop gaming Lenovo Legion dengan performa tinggi untuk gaming dan pekerjaan yang membutuhkan kemampuan komputasi besar.",
     specifications: {
@@ -146,8 +146,8 @@ const products = [
     image: "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
     images: [
       "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
-      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600",
-      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600"
+      "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEC3ID-A-1.jpg?v=1734067526",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzYxw5ByRFaLzeULR6UzvOZ19BFpIDfdlPFwmfnwa6CRkZUu907X81beOc&s=10"
     ],
     description: "Smartphone Apple dengan kamera berkualitas, performa responsif, dan fitur modern.",
     specifications: {
@@ -174,8 +174,8 @@ const products = [
     image: "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
     images: [
       "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
-      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
-      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600"
+      "https://i.pinimg.com/736x/77/d1/cc/77d1cc6e05b52c6bc6f37455eb395f00.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFPbagB0avX3qR04_-M7b4yzmFhrRUn7NVLCjmKQUmMq18yXxWDecIgth1&s=10"
     ],
     description: "Smartphone premium Apple dengan layar besar dan fitur unggulan.",
     specifications: {
@@ -201,8 +201,8 @@ const products = [
     image: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
     images: [
       "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600",
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+      "https://i.pinimg.com/736x/8d/92/f5/8d92f50ae17bc5de279cde0b79ae8b98.jpg",
+      "https://i.pinimg.com/236x/9c/dd/95/9cdd95b4fa66dfdf91ee9eaa38f5dd69.jpg"
     ],
     description: "Smartphone Xiaomi dengan performa bertenaga dan kemampuan pengisian daya cepat.",
     specifications: {
