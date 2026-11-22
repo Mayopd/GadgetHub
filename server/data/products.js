@@ -9,11 +9,6 @@ const products = [
     brand: "Apple",
     price: 18999000,
     image: "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
-    images: [
-      "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_macbook_air_13_inci_m3_2024_silver_1_2.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2paD9AQbo3tZ7wGsYAyweLB_DQjk6BEnSor8xxQ9vlxd_X0kemdV2JOU&s=10",
-      "https://cdnpro.eraspace.com/media/mageplaza/blog/post/s/p/spesifikasi_macbook_air_m3_primary_1.jpg"
-    ],
     description: "Laptop Apple dengan chip M3, desain tipis, dan performa yang mendukung kebutuhan produktivitas.",
     specifications: {
       "Prosesor": "Apple M3",
@@ -36,11 +31,6 @@ const products = [
     brand: "ASUS",
     price: 29999000,
     image: "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
-    images: [
-      "https://dlcdnwebimgs.asus.com/gain/E90DE227-7002-48C1-A940-B6E952D0BCCC",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4jX0maTl4yUal_MjDu6aH2CFCxxoEiY-cds1ZA95pgwh0ZgfAl3d0L9C&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXvzbT6ne6RESDVJGBgyOtZ8MI1lCCbpEo3mpRFIa1JxaOjLpU4R0SQJE&s=10"
-    ],
     description: "Laptop gaming dengan desain ringkas dan performa tinggi untuk gaming maupun pekerjaan berat.",
     specifications: {
       "Prosesor": "AMD Ryzen (tergantung varian)",
@@ -61,11 +51,6 @@ const products = [
     brand: "Lenovo",
     price: 8999000,
     image: "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
-    images: [
-      "https://p2-ofp.static.pub//fes/cms/2024/09/13/jmv2dc0d81jncxoluodx7ezpgq765o350215.png",
-      "https://plazait.co.id/uploads/products/gallery/lenovo-ideapad-slim-3-14arp10-83k6008aid-ryzen-5-7535hs-amd-radeon-graphics-cosm-1776141211-140.jpg",
-      "https://cdn.mos.cms.futurecdn.net/xYyfMxRBkMTysBNqZbaWo.jpg"
-    ],
     description: "Laptop untuk kebutuhan sehari-hari, belajar, dan pekerjaan dengan desain yang praktis.",
     specifications: {
       "Prosesor": "Intel Core atau AMD Ryzen (tergantung varian)",
@@ -87,11 +72,6 @@ const products = [
     brand: "ASUS",
     price: 9999000,
     image: "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
-    images: [
-      "https://dlcdnwebimgs.asus.com/gain/d7dac694-ccb7-416e-acea-0c776a878760/",
-      "https://plazait.co.id/uploads/products/gallery/asus-vivobook-14-a1404vap-vips5155m-core-5-120u-16gb-512gb-terra-cotta-1774864519-823.webp",
-      "https://plazait.co.id/uploads/products/gallery/asus-vivobook-14-a1404vap-vips5155m-core-5-120u-16gb-512gb-terra-cotta-1774864519-813.webp"
-    ],
     description: "Laptop 14 inci dengan desain modern yang cocok untuk produktivitas dan aktivitas sehari-hari.",
     specifications: {
       "Prosesor": "Intel Core atau AMD Ryzen (tergantung varian)",
@@ -113,11 +93,6 @@ const products = [
     brand: "Lenovo",
     price: 29999000,
     image: "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
-    images: [
-      "https://product.hstatic.net/200000722513/product/legion_7_16irx9_ct1_01_092622aa0062409380291da026cd8332_1024x1024.png",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlnaQjewuQhjRw6lIsyJOAByYgfKoJwN7Ry2CQ8xQXe5peKEA5JcEuIZ4&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE2jChTabDxdZfeyd85KUrqDfz9ETZoYDnwxwpMyz7xpbEJXtxcL-OoZ4D&s=10"
-    ],
     description: "Laptop gaming Lenovo Legion dengan performa tinggi untuk gaming dan pekerjaan yang membutuhkan kemampuan komputasi besar.",
     specifications: {
       "Prosesor": "Intel Core i9 generasi ke-14 (tergantung konfigurasi)",
@@ -143,11 +118,6 @@ const products = [
     brand: "Apple",
     price: 14999000,
     image: "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
-    images: [
-      "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEA3ID-A-1.jpg?v=1734067560",
-      "https://www.digimap.co.id/cdn/shop/files/0788-APPMYEC3ID-A-1.jpg?v=1734067526",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzYxw5ByRFaLzeULR6UzvOZ19BFpIDfdlPFwmfnwa6CRkZUu907X81beOc&s=10"
-    ],
     description: "Smartphone Apple dengan kamera berkualitas, performa responsif, dan fitur modern.",
     specifications: {
       "Prosesor": "Apple A18",
@@ -171,11 +141,6 @@ const products = [
     brand: "Apple",
     price: 24999000,
     image: "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
-    images: [
-      "https://www.hellostore.id/cdn/shop/files/1-18ProMaxBurgundy.png?v=1791198829",
-      "https://i.pinimg.com/736x/77/d1/cc/77d1cc6e05b52c6bc6f37455eb395f00.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFPbagB0avX3qR04_-M7b4yzmFhrRUn7NVLCjmKQUmMq18yXxWDecIgth1&s=10"
-    ],
     description: "Smartphone premium Apple dengan layar besar dan fitur unggulan.",
     specifications: {
       "Prosesor": "Apple A20 Pro",
@@ -198,11 +163,6 @@ const products = [
     brand: "Xiaomi",
     price: 6999000,
     image: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
-    images: [
-      "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1635414285.13045403.png",
-      "https://i.pinimg.com/736x/8d/92/f5/8d92f50ae17bc5de279cde0b79ae8b98.jpg",
-      "https://i.pinimg.com/236x/9c/dd/95/9cdd95b4fa66dfdf91ee9eaa38f5dd69.jpg"
-    ],
     description: "Smartphone Xiaomi dengan performa bertenaga dan kemampuan pengisian daya cepat.",
     specifications: {
       "Prosesor": "Qualcomm Snapdragon 888 5G",
@@ -226,10 +186,6 @@ const products = [
     brand: "Google",
     price: 16999000,
     image: "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
-    images: [
-      "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
-      "https://wifihifi.com/wp-content/uploads/2025/09/google-pixel-10-pro-back-hand-angle.jpg",
-    ],
     description: "Smartphone Google dengan pengalaman Android dan fitur fotografi berbasis komputasi.",
     specifications: {
       "Prosesor": "Google Tensor G5",
@@ -253,11 +209,6 @@ const products = [
     brand: "Samsung",
     price: 1200000,
     image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
-    images: [
-      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
-      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1094/samsung_samsung-galaxy-j2-prime-smartphone---black--8gb--1-5gb-_full03.jpg",
-      "https://down-id.img.susercontent.com/file/id-11134207-7rbk7-m9fzv36vm5177f"
-    ],
     description: "Smartphone Samsung generasi lama untuk kebutuhan komunikasi dan penggunaan dasar.",
     specifications: {
       "Prosesor": "MediaTek MT6737T Quad-core",
@@ -284,11 +235,6 @@ const products = [
     brand: "Apple",
     price: 9999000,
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
-    images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
-      "https://cdn11.bigcommerce.com/s-ahgfi493tw/images/stencil/original/products/2306/6007/Aesthetic_Pink_-_iPad_Air_4th_Gen_Mock_Up__16022.1620541769.jpg",
-      "https://www.digimap.co.id/cdn/shop/files/iPad_Air_13_M2_WiFi_Starlight_PDP_Image_Position_1b__GBEN_7153466e-f34c-4abd-bf2f-5ae19267374a.jpg?v=1721802721&width=1445"
-    ],
     description: "Tablet Apple untuk belajar, bekerja, menggambar, dan menikmati konten multimedia.",
     specifications: {
       "Chip": "Apple Silicon (tergantung generasi)",
@@ -310,11 +256,6 @@ const products = [
     brand: "Sony",
     price: 8999000,
     image: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-    images: [
-      "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-      "https://i.pinimg.com/736x/29/37/e6/2937e6ec9a37ddce1fa106e8d42cd578.jpg",
-      "https://i.pinimg.com/236x/a9/b7/7b/a9b77b8d1a93fe24a9b89436025a36c1.jpg"
-    ],
     description: "Konsol permainan dari Sony dengan dukungan grafis dan performa untuk bermain game.",
     specifications: {
       "CPU": "AMD Ryzen Zen 2, 8-core",
@@ -337,11 +278,6 @@ const products = [
     brand: "Sony",
     price: 34999000,
     image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-      "https://i.pinimg.com/736x/36/dd/0c/36dd0c3fc54e01f65483fbec4bede4c3.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCcMZG682tq1wRSVuhyq7six1hfoTKNf-ADIstJLK6A&s=10"
-    ],
     description: "Kamera mirrorless full-frame untuk kebutuhan fotografi dan pembuatan video.",
     specifications: {
       "Sensor": "Full-frame Exmor R CMOS",
@@ -365,11 +301,6 @@ const products = [
     brand: "Sony",
     price: 4999000,
     image: "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
-    images: [
-      "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xk42g453gOG9_O0sb782VxqmwWkdr6H35yhtKGKpagLgJ21btUyhfw6q&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJtK_7VJreRbPIRlwTSL4jpR0MBt2iMossxWu7S3p0BdCzmkH1GsQtkGY&s=10"
-    ],
     description: "Headphone nirkabel dengan fitur peredam kebisingan dan kualitas audio yang baik.",
     specifications: {
       "Tipe": "Wireless Over-ear Headphones",
@@ -391,11 +322,6 @@ const products = [
     brand: "JBL",
     price: 1799000,
     image: "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
-    images: [
-      "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
-      "https://id.jbl.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw9701e3d3/pdp/JBL_Flip_6_Lifestyle_01_904x560px.png",
-      "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwf451d7ef/2_JBL_FLIP6_3_4_RIGHT_PINK_30192_x1.png?sw=537&sfrm=png"
-    ],
     description: "Speaker Bluetooth portabel dengan desain ringkas untuk mendengarkan musik.",
     specifications: {
       "Tipe": "Portable Bluetooth Speaker",
