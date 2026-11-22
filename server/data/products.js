@@ -288,7 +288,7 @@ const products = [
     images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
       "https://cdn11.bigcommerce.com/s-ahgfi493tw/images/stencil/original/products/2306/6007/Aesthetic_Pink_-_iPad_Air_4th_Gen_Mock_Up__16022.1620541769.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSemL0oVHPBfgpQclUOc0VXR8fGSs_-j2sq-8BMb5zMoHrUMi4s0oBqYVI&s=10"
+      "https://www.digimap.co.id/cdn/shop/files/iPad_Air_13_M2_WiFi_Starlight_PDP_Image_Position_1b__GBEN_7153466e-f34c-4abd-bf2f-5ae19267374a.jpg?v=1721802721&width=1445"
     ],
     description: "Tablet Apple untuk belajar, bekerja, menggambar, dan menikmati konten multimedia.",
     specifications: {
