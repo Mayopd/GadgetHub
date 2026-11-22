@@ -228,8 +228,8 @@ const products = [
     image: "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
     images: [
       "https://shop.maujual.com/cdn/shop/files/Jade.png?v=1768235420",
-      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
+      "https://wifihifi.com/wp-content/uploads/2025/09/google-pixel-10-pro-back-hand-angle.jpg",
+      "hhttps://i.guim.co.uk/img/media/5f43bfe28f64884fb2e26c8489dc28f0d1237f27/461_0_5840_4672/master/5840.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=ae625beeb6951ae6cd2c60c5c97319ca"
     ],
     description: "Smartphone Google dengan pengalaman Android dan fitur fotografi berbasis komputasi.",
     specifications: {
@@ -256,8 +256,8 @@ const products = [
     image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
     images: [
       "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1153/samsung_samsung-galaxy-j2-prime-smartphone---gold--8gb--ram-1-5gb-_full02.jpg",
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
+      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//1094/samsung_samsung-galaxy-j2-prime-smartphone---black--8gb--1-5gb-_full03.jpg",
+      "https://down-id.img.susercontent.com/file/id-11134207-7rbk7-m9fzv36vm5177f"
     ],
     description: "Smartphone Samsung generasi lama untuk kebutuhan komunikasi dan penggunaan dasar.",
     specifications: {
@@ -287,8 +287,8 @@ const products = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
     images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNkU63_kVlhu_JScgLBQn4pTPu9yk-7GZhtiEImxhgsg&s=10",
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600",
-      "https://images.unsplash.com/photo-1561154464-82e9aab32f4c?w=600"
+      "https://cdn11.bigcommerce.com/s-ahgfi493tw/images/stencil/original/products/2306/6007/Aesthetic_Pink_-_iPad_Air_4th_Gen_Mock_Up__16022.1620541769.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSemL0oVHPBfgpQclUOc0VXR8fGSs_-j2sq-8BMb5zMoHrUMi4s0oBqYVI&s=10"
     ],
     description: "Tablet Apple untuk belajar, bekerja, menggambar, dan menikmati konten multimedia.",
     specifications: {
@@ -313,8 +313,8 @@ const products = [
     image: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
     images: [
       "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600",
-      "https://images.unsplash.com/photo-1622297845775-5ff3fef71d13?w=600"
+      "https://i.pinimg.com/736x/29/37/e6/2937e6ec9a37ddce1fa106e8d42cd578.jpg",
+      "https://i.pinimg.com/236x/a9/b7/7b/a9b77b8d1a93fe24a9b89436025a36c1.jpg"
     ],
     description: "Konsol permainan dari Sony dengan dukungan grafis dan performa untuk bermain game.",
     specifications: {
@@ -340,8 +340,8 @@ const products = [
     image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
     images: [
       "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sony_A7_IV_%28ILCE-7M4%29_-_by_Henry_S%C3%B6derlund_%2851739988735%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600",
-      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600"
+      "https://i.pinimg.com/736x/36/dd/0c/36dd0c3fc54e01f65483fbec4bede4c3.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCcMZG682tq1wRSVuhyq7six1hfoTKNf-ADIstJLK6A&s=10"
     ],
     description: "Kamera mirrorless full-frame untuk kebutuhan fotografi dan pembuatan video.",
     specifications: {
@@ -368,8 +368,8 @@ const products = [
     image: "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
     images: [
       "https://www.sony.co.id/image/86ef18640c4199cc7ce7150a5143460a?fmt=png-alpha",
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600",
-      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xk42g453gOG9_O0sb782VxqmwWkdr6H35yhtKGKpagLgJ21btUyhfw6q&s=10",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJtK_7VJreRbPIRlwTSL4jpR0MBt2iMossxWu7S3p0BdCzmkH1GsQtkGY&s=10"
     ],
     description: "Headphone nirkabel dengan fitur peredam kebisingan dan kualitas audio yang baik.",
     specifications: {
@@ -394,8 +394,8 @@ const products = [
     image: "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
     images: [
       "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw1461aed4/2_JBL_FLIP6_3_4_RIGHT_BLACK_30195_x1.png?sw=537&sfrm=png",
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+      "https://id.jbl.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw9701e3d3/pdp/JBL_Flip_6_Lifestyle_01_904x560px.png",
+      "https://id.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwf451d7ef/2_JBL_FLIP6_3_4_RIGHT_PINK_30192_x1.png?sw=537&sfrm=png"
     ],
     description: "Speaker Bluetooth portabel dengan desain ringkas untuk mendengarkan musik.",
     specifications: {
