@@ -1,31 +1,40 @@
+import express from 'express'
+import cors from 'cors'
+import multer from 'multer'
+import path from 'path'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
+import products from '../server/data/products.js'
 
-const express = require('express')
-const cors = require('cors')
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
-const products = require('./data/products')
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const IS_VERCEL = Boolean(process.env.VERCEL)
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-const UPLOAD_DIR = path.join(__dirname, 'uploads')
-const GALLERY_FILE = path.join(__dirname, 'data', 'galleries.json')
+const DATA_DIR = path.join(__dirname, '..', 'server', 'data')
+const WRITE_DIR = IS_VERCEL ? '/tmp' : path.join(__dirname, '..', 'server')
+const UPLOAD_DIR = path.join(WRITE_DIR, 'uploads')
+const GALLERY_FILE = IS_VERCEL
+  ? path.join('/tmp', 'galleries.json')
+  : path.join(DATA_DIR, 'galleries.json')
 
-// Membuat folder penyimpanan jika belum tersedia
 if (!fs.existsSync(UPLOAD_DIR)) {
   fs.mkdirSync(UPLOAD_DIR, { recursive: true })
 }
 
 if (!fs.existsSync(GALLERY_FILE)) {
-  fs.writeFileSync(GALLERY_FILE, '{}')
+  const seed = path.join(DATA_DIR, 'galleries.json')
+  fs.writeFileSync(
+    GALLERY_FILE,
+    fs.existsSync(seed) ? fs.readFileSync(seed, 'utf8') : '{}'
+  )
 }
 
 app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static(UPLOAD_DIR))
 
-// Membaca data foto tambahan
 function readGalleries() {
   try {
     return JSON.parse(fs.readFileSync(GALLERY_FILE, 'utf8'))
@@ -35,7 +44,6 @@ function readGalleries() {
   }
 }
 
-// Menyimpan data foto tambahan
 function saveGalleries(galleries) {
   fs.writeFileSync(
     GALLERY_FILE,
@@ -43,7 +51,6 @@ function saveGalleries(galleries) {
   )
 }
 
-// Menggabungkan produk dengan foto tambahan
 function getProductsWithImages() {
   const galleries = readGalleries()
 
@@ -63,12 +70,10 @@ function getProductsWithImages() {
   })
 }
 
-// Mencari produk
 function findProduct(id) {
   return products.find(product => product.id === Number(id))
 }
 
-// Konfigurasi penyimpanan foto
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, UPLOAD_DIR)
@@ -96,7 +101,6 @@ const upload = multer({
   }
 })
 
-// Halaman utama API
 app.get('/', (req, res) => {
   res.json({
     message: 'GadgetHub API is running',
@@ -104,7 +108,6 @@ app.get('/', (req, res) => {
   })
 })
 
-// Mengambil semua produk
 app.get('/api/products', (req, res) => {
   const data = getProductsWithImages()
 
@@ -115,7 +118,6 @@ app.get('/api/products', (req, res) => {
   })
 })
 
-// Mengambil detail produk
 app.get('/api/products/:id', (req, res) => {
   const product = findProduct(req.params.id)
 
@@ -144,7 +146,6 @@ app.get('/api/products/:id', (req, res) => {
   })
 })
 
-// Upload foto dari komputer
 app.post(
   '/api/products/:id/images/upload',
   upload.single('image'),
@@ -187,7 +188,6 @@ app.post(
   }
 )
 
-// Menambahkan foto melalui URL
 app.post('/api/products/:id/images/url', (req, res) => {
   const product = findProduct(req.params.id)
 
@@ -240,7 +240,6 @@ app.post('/api/products/:id/images/url', (req, res) => {
   })
 })
 
-// Menghapus foto tambahan berdasarkan indeks
 app.delete('/api/products/:id/images/:index', (req, res) => {
   const product = findProduct(req.params.id)
   const index = Number(req.params.index)
@@ -271,7 +270,6 @@ app.delete('/api/products/:id/images/:index', (req, res) => {
   galleryImages.splice(index, 1)
   galleries[product.id] = galleryImages
 
-  // Menghapus file fisik jika berasal dari upload
   if (removedImage.startsWith('/uploads/')) {
     const filename = path.basename(removedImage)
     const filePath = path.join(UPLOAD_DIR, filename)
@@ -290,7 +288,6 @@ app.delete('/api/products/:id/images/:index', (req, res) => {
   })
 })
 
-// Mengambil semua kategori
 app.get('/api/categories', (req, res) => {
   const categories = [...new Set(
     products.map(product => product.category)
@@ -303,7 +300,6 @@ app.get('/api/categories', (req, res) => {
   })
 })
 
-// Mengambil produk berdasarkan kategori
 app.get('/api/categories/:category/products', (req, res) => {
   const category = decodeURIComponent(req.params.category)
 
@@ -318,7 +314,6 @@ app.get('/api/categories/:category/products', (req, res) => {
   })
 })
 
-// Mencari produk
 app.get('/api/search', (req, res) => {
   const keyword = (req.query.q || '').toLowerCase()
 
@@ -335,7 +330,6 @@ app.get('/api/search', (req, res) => {
   })
 })
 
-// Penanganan error
 app.use((error, req, res, next) => {
   console.error(error)
 
@@ -356,6 +350,10 @@ app.use((error, req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`GadgetHub API running at http://localhost:${PORT}`)
-})
+if (!IS_VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`GadgetHub API running at http://localhost:${PORT}`)
+  })
+}
+
+export default app

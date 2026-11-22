@@ -1,4 +1,3 @@
-
 const products = [
   // =========================
   // LAPTOP
@@ -414,4 +413,4 @@ const products = [
   }
 ];
 
-module.exports = products;
+export default products;
