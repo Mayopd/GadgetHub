@@ -825,10 +825,10 @@ function ProductManager() {
   }, [])
 
   useEffect(() => {
-    if (session) {
+    if (session?.user?.id) {
       loadInitialData()
     }
-  }, [session])
+  }, [session?.user?.id])
 
   async function loadInitialData() {
     try {
@@ -842,15 +842,25 @@ function ProductManager() {
 
       if (Array.isArray(categoriesData) && categoriesData.length > 0) {
         setCategories(categoriesData)
-        const defaultCategory = categoriesData.includes('Laptop')
-          ? 'Laptop'
-          : categoriesData[0]
 
-        setForm(prev => ({
-          ...prev,
-          category: defaultCategory
-        }))
-        setSpecRows(buildEmptyRows(defaultCategory))
+        setEditingId(currentEditingId => {
+          if (!currentEditingId) {
+            const defaultCategory = categoriesData.includes('Laptop')
+              ? 'Laptop'
+              : categoriesData[0]
+
+            setForm(prev => ({
+              ...prev,
+              category: prev.name ? prev.category : defaultCategory
+            }))
+            setSpecRows(prev =>
+              prev.some(row => row.value.trim() !== '')
+                ? prev
+                : buildEmptyRows(defaultCategory)
+            )
+          }
+          return currentEditingId
+        })
       }
     } catch (err) {
       setError(err.message)
@@ -911,7 +921,7 @@ function ProductManager() {
 
     if (name === 'category') {
       const hasAnyValue = specRows.some(row => row.value.trim() !== '')
-      if (!editingId || !hasAnyValue) {
+      if (!editingId && !hasAnyValue) {
         setSpecRows(buildEmptyRows(value))
       }
     }
@@ -1045,12 +1055,16 @@ function ProductManager() {
   }
 
   function handleEdit(product) {
-    const productCategory = product.category || categories[0] || 'Laptop'
+    const rawCategory = product.category || categories[0] || 'Laptop'
+    const matchedCategory =
+      categories.find(cat => cat.toLowerCase() === rawCategory.toLowerCase()) ||
+      rawCategory
+
     setEditingId(product.id)
 
     setForm({
       name: product.name || '',
-      category: productCategory,
+      category: matchedCategory,
       brand: product.brand || '',
       price: String(product.price ?? ''),
       image: product.image || '',
@@ -1064,7 +1078,7 @@ function ProductManager() {
             key,
             value: String(value ?? '')
           }))
-        : buildEmptyRows(productCategory)
+        : buildEmptyRows(matchedCategory)
     )
 
     setMessage('')
@@ -1082,7 +1096,7 @@ function ProductManager() {
     setError('')
     setMessage('')
 
-    // 1. Cek apakah ada field wajib yang belum diisi
+    // 1. Cek apakah ada field wajib yang belum diisi (Deskripsi tidak wajib)
     const missingFields = []
     if (!form.name.trim()) missingFields.push('Nama Produk')
     if (!form.category.trim()) missingFields.push('Kategori')
@@ -1091,7 +1105,6 @@ function ProductManager() {
       missingFields.push('Harga')
     }
     if (!form.image.trim()) missingFields.push('URL Gambar')
-    if (!form.description.trim()) missingFields.push('Deskripsi')
 
     const specifications = {}
     let hasIncompleteSpecRow = false
@@ -1374,18 +1387,18 @@ function ProductManager() {
             />
           )}
 
-          <label>Deskripsi *</label>
+          <label>Deskripsi (Opsional)</label>
 
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
-            placeholder="Deskripsi produk..."
+            placeholder="Deskripsi produk (boleh dikosongkan)..."
             rows="4"
           />
 
           <label>
-            Spesifikasi Produk * (Lengkapi kolom penjelasan atau hapus baris yang tidak dipakai)
+            Spesifikasi Produk * 
           </label>
 
           <div
