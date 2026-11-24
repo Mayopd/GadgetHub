@@ -1,0 +1,22 @@
+import { createClient } from '@supabase/supabase-js'
+import 'dotenv/config'
+
+const supabaseUrl = process.env.SUPABASE_URL
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+if (!supabaseUrl || !serviceRoleKey) {
+  throw new Error('Konfigurasi Supabase backend belum lengkap.')
+}
+
+const supabase = createClient(
+  supabaseUrl,
+  serviceRoleKey,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  }
+)
+
+export default supabase

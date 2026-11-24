@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 
 function Profile() {
@@ -29,7 +28,17 @@ function Profile() {
             About GadgetHub
           </Link>
 
-          <Link to="/gallery" className="primary-button gallery-link-button">
+          <Link
+            to="/manage-products"
+            className="primary-button"
+          >
+            Kelola Produk
+          </Link>
+
+          <Link
+            to="/gallery"
+            className="primary-button gallery-link-button"
+          >
             🖼 Kelola Galeri Produk
           </Link>
         </div>

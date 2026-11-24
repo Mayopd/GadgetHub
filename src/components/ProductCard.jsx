@@ -9,8 +9,8 @@ function getImageUrl(image) {
 }
 
 function ProductCard({ product }) {
-  const images = product.images?.length
-    ? product.images
+  const images = product.galleryImages?.length
+    ? product.galleryImages
     : (product.image ? [product.image] : [])
 
   const [current, setCurrent] = useState(0)

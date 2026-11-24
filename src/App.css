@@ -10,6 +10,7 @@ body {
   font-family: 'DM Sans', sans-serif;
   background: #ffffff;
   color: #172033;
+  padding-bottom: 70px;
 }
 
 a {
@@ -18,6 +19,9 @@ a {
 }
 
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   height: 80px;
   padding: 0 8%;
   display: flex;
@@ -172,8 +176,6 @@ a {
   -webkit-user-drag: none;
 }
 
-/* Arrows */
-
 .card-slider-arrow {
   position: absolute;
   top: 50%;
@@ -212,8 +214,6 @@ a {
 .card-slider-next {
   right: 8px;
 }
-
-/* Dots */
 
 .card-slider-dots {
   position: absolute;
@@ -438,6 +438,7 @@ a {
     font-size: 32px;
   }
 }
+
 /* Category Page */
 
 .category-grid {
@@ -571,12 +572,6 @@ a {
 .bottom-navigation a.active {
   color: #3478f6;
   font-weight: 700;
-}
-
-/* Give room for bottom navigation */
-
-body {
-  padding-bottom: 70px;
 }
 
 @media (max-width: 600px) {
@@ -952,5 +947,190 @@ body {
   .gallery-selected-product {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* ===========================
+   Product Manager (Admin)
+   =========================== */
+
+.product-manager-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #f5f8ff;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-manager-toolbar button {
+  background: #172033;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.product-manager-section {
+  padding: 28px;
+  background: #f9fafb;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.product-manager-section h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.product-manager-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+}
+
+.product-manager-form label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.product-manager-form input,
+.product-manager-form select,
+.product-manager-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dfe5ef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+  margin-bottom: 18px;
+}
+
+.product-manager-preview {
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #edf0f5;
+  margin-bottom: 18px;
+}
+
+.product-manager-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.product-manager-form button[type='submit'],
+.product-manager-actions button {
+  background: #3478f6;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.product-manager-actions button[type='button'] {
+  background: #687386;
+}
+
+.product-manager-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.product-manager-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product-manager-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+}
+
+.product-manager-item img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #f5f7fa;
+  flex-shrink: 0;
+}
+
+.product-manager-info {
+  flex: 1;
+}
+
+.product-manager-info h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.product-manager-info p {
+  color: #758096;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.product-manager-info strong {
+  color: #3478f6;
+  font-size: 14px;
+}
+
+.product-manager-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.product-manager-item-actions button {
+  border: 1px solid #dfe5ef;
+  background: white;
+  color: #172033;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.product-manager-item-actions button:last-child {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+@media (max-width: 600px) {
+  .product-manager-toolbar,
+  .product-manager-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-manager-item-actions {
+    width: 100%;
   }
 }

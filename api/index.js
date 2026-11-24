@@ -1,94 +1,19 @@
 import express from 'express'
 import cors from 'cors'
 import multer from 'multer'
-import path from 'path'
-import fs from 'fs'
-import { fileURLToPath } from 'url'
-import products from '../server/data/products.js'
+import { createClient } from '@supabase/supabase-js'
+import 'dotenv/config'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const IS_VERCEL = Boolean(process.env.VERCEL)
+import supabase from './supabase.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
-const DATA_DIR = path.join(__dirname, '..', 'server', 'data')
-const WRITE_DIR = IS_VERCEL ? '/tmp' : path.join(__dirname, '..', 'server')
-const UPLOAD_DIR = path.join(WRITE_DIR, 'uploads')
-const GALLERY_FILE = IS_VERCEL
-  ? path.join('/tmp', 'galleries.json')
-  : path.join(DATA_DIR, 'galleries.json')
-
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true })
-}
-
-if (!fs.existsSync(GALLERY_FILE)) {
-  const seed = path.join(DATA_DIR, 'galleries.json')
-  fs.writeFileSync(
-    GALLERY_FILE,
-    fs.existsSync(seed) ? fs.readFileSync(seed, 'utf8') : '{}'
-  )
-}
-
 app.use(cors())
 app.use(express.json())
-app.use('/uploads', express.static(UPLOAD_DIR))
-
-function readGalleries() {
-  try {
-    return JSON.parse(fs.readFileSync(GALLERY_FILE, 'utf8'))
-  } catch (error) {
-    console.error('Gagal membaca galeri:', error)
-    return {}
-  }
-}
-
-function saveGalleries(galleries) {
-  fs.writeFileSync(
-    GALLERY_FILE,
-    JSON.stringify(galleries, null, 2)
-  )
-}
-
-function getProductsWithImages() {
-  const galleries = readGalleries()
-
-  return products.map(product => {
-    const galleryImages = galleries[product.id] || []
-    const defaultImages = product.images || (product.image ? [product.image] : [])
-
-    return {
-      ...product,
-      image: defaultImages[0] || product.image,
-      galleryImages,
-      images: [
-        ...defaultImages,
-        ...galleryImages
-      ]
-    }
-  })
-}
-
-function findProduct(id) {
-  return products.find(product => product.id === Number(id))
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, UPLOAD_DIR)
-  },
-
-  filename: (req, file, callback) => {
-    const extension = path.extname(file.originalname).toLowerCase()
-    const filename = `${Date.now()}-${Math.round(Math.random() * 1e9)}${extension}`
-
-    callback(null, filename)
-  }
-})
 
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 5 * 1024 * 1024
   },
@@ -101,248 +26,612 @@ const upload = multer({
   }
 })
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'GadgetHub API is running',
-    status: 'success'
-  })
-})
+// Mengubah data database menjadi format yang digunakan frontend
+function formatProduct(product) {
+  return {
+    ...product,
+    category: product.categories?.name || '',
+    galleryImages: product.gallery_images || [],
+    specifications: product.specifications || {},
+    price: Number(product.price)
+  }
+}
 
-app.get('/api/products', (req, res) => {
-  const data = getProductsWithImages()
+// Mengambil ID kategori berdasarkan nama kategori
+async function getCategoryId(category) {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('id')
+    .ilike('name', String(category).trim())
+    .single()
 
-  res.json({
-    status: 'success',
-    total: data.length,
-    data
-  })
-})
-
-app.get('/api/products/:id', (req, res) => {
-  const product = findProduct(req.params.id)
-
-  if (!product) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Product not found'
-    })
+  if (error || !data) {
+    throw new Error('Kategori tidak ditemukan.')
   }
 
-  const galleries = readGalleries()
-  const galleryImages = galleries[product.id] || []
-  const defaultImages = product.images || (product.image ? [product.image] : [])
+  return data.id
+}
 
+// Memeriksa login dan hak akses admin
+async function requireAdmin(req, res, next) {
+  try {
+    const token = req.headers.authorization?.replace('Bearer ', '')
+
+    if (!token) {
+      return res.status(401).json({
+        message: 'Silakan login terlebih dahulu.'
+      })
+    }
+
+    const authClient = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ANON_KEY
+    )
+
+    const {
+      data: { user },
+      error: authError
+    } = await authClient.auth.getUser(token)
+
+    if (authError || !user) {
+      return res.status(401).json({
+        message: 'Sesi login tidak valid.'
+      })
+    }
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    if (error || profile?.role !== 'admin') {
+      return res.status(403).json({
+        message: 'Akses hanya untuk admin.'
+      })
+    }
+
+    req.user = user
+    next()
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    })
+  }
+}
+
+// Halaman utama API
+app.get('/', (req, res) => {
   res.json({
     status: 'success',
-    data: {
-      ...product,
-      image: defaultImages[0] || product.image,
-      galleryImages,
-      images: [
-        ...defaultImages,
-        ...galleryImages
-      ]
-    }
+    message: 'GadgetHub API is running'
   })
 })
 
-app.post(
-  '/api/products/:id/images/upload',
-  upload.single('image'),
-  (req, res) => {
-    const product = findProduct(req.params.id)
+// GET seluruh produk
+app.get('/api/products', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*, categories(id, name)')
+      .order('id', { ascending: false })
 
-    if (!product) {
-      if (req.file) {
-        fs.unlinkSync(req.file.path)
-      }
+    if (error) throw error
 
+    res.json({
+      status: 'success',
+      total: data.length,
+      data: data.map(formatProduct)
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// GET detail produk
+app.get('/api/products/:id', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*, categories(id, name)')
+      .eq('id', req.params.id)
+      .single()
+
+    if (error || !data) {
       return res.status(404).json({
         status: 'error',
-        message: 'Product not found'
+        message: 'Produk tidak ditemukan.'
       })
     }
 
-    if (!req.file) {
+    res.json({
+      status: 'success',
+      data: formatProduct(data)
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// POST tambah produk
+app.post('/api/products', requireAdmin, async (req, res) => {
+  try {
+    const {
+      name,
+      category,
+      category_id,
+      brand,
+      price,
+      image,
+      description,
+      specifications,
+      galleryImages,
+      gallery_images
+    } = req.body
+
+    if (
+      !name?.trim() ||
+      (!category && !category_id) ||
+      !brand?.trim() ||
+      price === undefined ||
+      price === ''
+    ) {
       return res.status(400).json({
-        status: 'error',
-        message: 'Pilih foto terlebih dahulu.'
+        message: 'Nama, kategori, merek, dan harga wajib diisi.'
       })
     }
 
-    const galleries = readGalleries()
-    const galleryImages = galleries[product.id] || []
+    const numericPrice = Number(price)
 
-    const imageUrl = `/uploads/${req.file.filename}`
+    if (!Number.isFinite(numericPrice) || numericPrice < 0) {
+      return res.status(400).json({
+        message: 'Harga harus berupa angka yang valid.'
+      })
+    }
 
-    galleryImages.push(imageUrl)
-    galleries[product.id] = galleryImages
+    const categoryId = category_id || await getCategoryId(category)
 
-    saveGalleries(galleries)
+    const { data, error } = await supabase
+      .from('products')
+      .insert({
+        name: name.trim(),
+        category_id: categoryId,
+        brand: brand.trim(),
+        price: numericPrice,
+        image: image || null,
+        description: description || '',
+        specifications: specifications || {},
+        gallery_images: galleryImages || gallery_images || (image ? [image] : [])
+      })
+      .select('*, categories(id, name)')
+      .single()
+
+    if (error) throw error
 
     res.status(201).json({
       status: 'success',
-      message: 'Foto berhasil diunggah.',
-      data: galleryImages
+      message: 'Produk berhasil ditambahkan.',
+      data: formatProduct(data)
     })
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// PUT edit produk
+app.put('/api/products/:id', requireAdmin, async (req, res) => {
+  try {
+    const {
+      name,
+      category,
+      category_id,
+      brand,
+      price,
+      image,
+      description,
+      specifications,
+      galleryImages,
+      gallery_images
+    } = req.body
+
+    const updates = {}
+
+    if (name !== undefined) updates.name = name.trim()
+    if (brand !== undefined) updates.brand = brand.trim()
+    if (image !== undefined) updates.image = image
+    if (description !== undefined) updates.description = description
+    if (specifications !== undefined) {
+      updates.specifications = specifications
+    }
+
+    if (price !== undefined) {
+      const numericPrice = Number(price)
+
+      if (!Number.isFinite(numericPrice) || numericPrice < 0) {
+        return res.status(400).json({
+          message: 'Harga harus berupa angka yang valid.'
+        })
+      }
+
+      updates.price = numericPrice
+    }
+
+    if (category_id !== undefined) {
+      updates.category_id = category_id
+    } else if (category !== undefined) {
+      updates.category_id = await getCategoryId(category)
+    }
+
+    if (galleryImages !== undefined) {
+      updates.gallery_images = galleryImages
+    } else if (gallery_images !== undefined) {
+      updates.gallery_images = gallery_images
+    }
+
+    const { data, error } = await supabase
+      .from('products')
+      .update(updates)
+      .eq('id', req.params.id)
+      .select('*, categories(id, name)')
+      .single()
+
+    if (error) throw error
+
+    res.json({
+      status: 'success',
+      message: 'Produk berhasil diperbarui.',
+      data: formatProduct(data)
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// DELETE produk
+app.delete('/api/products/:id', requireAdmin, async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', req.params.id)
+      .select('id')
+      .single()
+
+    if (error) throw error
+
+    res.json({
+      status: 'success',
+      message: 'Produk berhasil dihapus.',
+      data
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// GET seluruh kategori (dikembalikan sebagai array string agar kompatibel dengan Categories.jsx)
+app.get('/api/categories', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('id, name')
+      .order('id', { ascending: true })
+
+    if (error) throw error
+
+    const categoryNames = data.map(item => item.name)
+
+    res.json({
+      status: 'success',
+      total: categoryNames.length,
+      data: categoryNames
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// GET produk berdasarkan kategori
+app.get('/api/categories/:category/products', async (req, res) => {
+  try {
+    const categoryId = await getCategoryId(req.params.category)
+
+    const { data, error } = await supabase
+      .from('products')
+      .select('*, categories(id, name)')
+      .eq('category_id', categoryId)
+      .order('id', { ascending: false })
+
+    if (error) throw error
+
+    res.json({
+      status: 'success',
+      total: data.length,
+      data: data.map(formatProduct)
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// SEARCH produk berdasarkan nama, merek, atau kategori
+app.get('/api/search', async (req, res) => {
+  try {
+    const keyword = String(req.query.q || '').trim()
+
+    if (!keyword) {
+      return res.json({
+        status: 'success',
+        total: 0,
+        data: []
+      })
+    }
+
+    const { data: categories, error: categoryError } = await supabase
+      .from('categories')
+      .select('id')
+      .ilike('name', `%${keyword}%`)
+
+    if (categoryError) throw categoryError
+
+    const categoryIds = categories.map(item => item.id)
+
+    let query = supabase
+      .from('products')
+      .select('*, categories(id, name)')
+      .or(`name.ilike.%${keyword}%,brand.ilike.%${keyword}%`)
+
+    if (categoryIds.length > 0) {
+      query = supabase
+        .from('products')
+        .select('*, categories(id, name)')
+        .or(
+          `name.ilike.%${keyword}%,brand.ilike.%${keyword}%,category_id.in.(${categoryIds.join(',')})`
+        )
+    }
+
+    const { data, error } = await query.order('id', {
+      ascending: false
+    })
+
+    if (error) throw error
+
+    res.json({
+      status: 'success',
+      total: data.length,
+      data: data.map(formatProduct)
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+})
+
+// Upload gambar produk ke Supabase Storage (Menambahkan ke galeri, bukan mengganti)
+app.post(
+  '/api/products/:id/images/upload',
+  requireAdmin,
+  upload.single('image'),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          message: 'Pilih gambar terlebih dahulu.'
+        })
+      }
+
+      const { data: product, error: productError } = await supabase
+        .from('products')
+        .select('image, gallery_images')
+        .eq('id', req.params.id)
+        .single()
+
+      if (productError) throw productError
+
+      const extension = req.file.mimetype.split('/')[1]
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`
+      const filePath = `products/${req.params.id}/${fileName}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, req.file.buffer, {
+          contentType: req.file.mimetype,
+          upsert: false
+        })
+
+      if (uploadError) throw uploadError
+
+      const { data: publicUrl } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(filePath)
+
+      const baseGallery = product.gallery_images?.length
+        ? product.gallery_images
+        : (product.image ? [product.image] : [])
+
+      const galleryImages = [...baseGallery, publicUrl.publicUrl]
+
+      const { error: updateError } = await supabase
+        .from('products')
+        .update({
+          image: product.image || publicUrl.publicUrl,
+          gallery_images: galleryImages
+        })
+        .eq('id', req.params.id)
+
+      if (updateError) throw updateError
+
+      res.status(201).json({
+        status: 'success',
+        message: 'Gambar produk berhasil ditambahkan ke galeri.',
+        data: galleryImages
+      })
+    } catch (error) {
+      res.status(400).json({
+        message: error.message
+      })
+    }
   }
 )
 
-app.post('/api/products/:id/images/url', (req, res) => {
-  const product = findProduct(req.params.id)
+// Menambahkan gambar produk menggunakan URL (Menambahkan ke galeri, bukan mengganti)
+app.post(
+  '/api/products/:id/images/url',
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const { imageUrl } = req.body
 
-  if (!product) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Product not found'
-    })
-  }
+      if (!imageUrl) {
+        return res.status(400).json({
+          message: 'URL gambar wajib diisi.'
+        })
+      }
 
-  const { imageUrl } = req.body
+      const parsedUrl = new URL(imageUrl)
 
-  if (!imageUrl || typeof imageUrl !== 'string') {
-    return res.status(400).json({
-      status: 'error',
-      message: 'URL gambar wajib diisi.'
-    })
-  }
+      if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+        return res.status(400).json({
+          message: 'URL gambar tidak valid.'
+        })
+      }
 
-  let parsedUrl
+      const { data: product, error } = await supabase
+        .from('products')
+        .select('image, gallery_images')
+        .eq('id', req.params.id)
+        .single()
 
-  try {
-    parsedUrl = new URL(imageUrl)
-  } catch {
-    return res.status(400).json({
-      status: 'error',
-      message: 'URL gambar tidak valid.'
-    })
-  }
+      if (error) throw error
 
-  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
-    return res.status(400).json({
-      status: 'error',
-      message: 'URL harus menggunakan HTTP atau HTTPS.'
-    })
-  }
+      const baseGallery = product.gallery_images?.length
+        ? product.gallery_images
+        : (product.image ? [product.image] : [])
 
-  const galleries = readGalleries()
-  const galleryImages = galleries[product.id] || []
+      const galleryImages = [...baseGallery, imageUrl]
 
-  galleryImages.push(imageUrl)
-  galleries[product.id] = galleryImages
+      const { error: updateError } = await supabase
+        .from('products')
+        .update({
+          image: product.image || imageUrl,
+          gallery_images: galleryImages
+        })
+        .eq('id', req.params.id)
 
-  saveGalleries(galleries)
+      if (updateError) throw updateError
 
-  res.status(201).json({
-    status: 'success',
-    message: 'URL gambar berhasil ditambahkan.',
-    data: galleryImages
-  })
-})
-
-app.delete('/api/products/:id/images/:index', (req, res) => {
-  const product = findProduct(req.params.id)
-  const index = Number(req.params.index)
-
-  if (!product) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Product not found'
-    })
-  }
-
-  const galleries = readGalleries()
-  const galleryImages = galleries[product.id] || []
-
-  if (
-    !Number.isInteger(index) ||
-    index < 0 ||
-    index >= galleryImages.length
-  ) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Foto tidak ditemukan.'
-    })
-  }
-
-  const removedImage = galleryImages[index]
-
-  galleryImages.splice(index, 1)
-  galleries[product.id] = galleryImages
-
-  if (removedImage.startsWith('/uploads/')) {
-    const filename = path.basename(removedImage)
-    const filePath = path.join(UPLOAD_DIR, filename)
-
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath)
+      res.status(201).json({
+        status: 'success',
+        message: 'URL gambar berhasil ditambahkan ke galeri.',
+        data: galleryImages
+      })
+    } catch (error) {
+      res.status(400).json({
+        message: error.message
+      })
     }
   }
+)
 
-  saveGalleries(galleries)
+// Menghapus gambar tambahan
+app.delete(
+  '/api/products/:id/images/:index',
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const { data: product, error } = await supabase
+        .from('products')
+        .select('gallery_images')
+        .eq('id', req.params.id)
+        .single()
 
-  res.json({
-    status: 'success',
-    message: 'Foto berhasil dihapus.',
-    data: galleryImages
+      if (error) throw error
+
+      const images = [...(product.gallery_images || [])]
+      const index = Number(req.params.index)
+
+      if (
+        !Number.isInteger(index) ||
+        index < 0 ||
+        index >= images.length
+      ) {
+        return res.status(404).json({
+          message: 'Foto tidak ditemukan.'
+        })
+      }
+
+      const removedImage = images[index]
+      images.splice(index, 1)
+
+      const { error: updateError } = await supabase
+        .from('products')
+        .update({
+          gallery_images: images
+        })
+        .eq('id', req.params.id)
+
+      if (updateError) throw updateError
+
+      const marker = '/storage/v1/object/public/product-images/'
+      const markerIndex = removedImage.indexOf(marker)
+
+      if (markerIndex !== -1) {
+        const filePath = decodeURIComponent(
+          removedImage.slice(markerIndex + marker.length)
+        )
+
+        await supabase.storage
+          .from('product-images')
+          .remove([filePath])
+      }
+
+      res.json({
+        status: 'success',
+        message: 'Gambar berhasil dihapus.',
+        data: images
+      })
+    } catch (error) {
+      res.status(400).json({
+        message: error.message
+      })
+    }
+  }
+)
+
+// Menangani endpoint yang tidak ditemukan
+app.use((req, res) => {
+  res.status(404).json({
+    status: 'error',
+    message: 'Endpoint tidak ditemukan.'
   })
 })
 
-app.get('/api/categories', (req, res) => {
-  const categories = [...new Set(
-    products.map(product => product.category)
-  )]
-
-  res.json({
-    status: 'success',
-    total: categories.length,
-    data: categories
-  })
-})
-
-app.get('/api/categories/:category/products', (req, res) => {
-  const category = decodeURIComponent(req.params.category)
-
-  const filteredProducts = getProductsWithImages().filter(
-    product => product.category.toLowerCase() === category.toLowerCase()
-  )
-
-  res.json({
-    status: 'success',
-    total: filteredProducts.length,
-    data: filteredProducts
-  })
-})
-
-app.get('/api/search', (req, res) => {
-  const keyword = (req.query.q || '').toLowerCase()
-
-  const results = getProductsWithImages().filter(product =>
-    product.name.toLowerCase().includes(keyword) ||
-    product.category.toLowerCase().includes(keyword) ||
-    product.brand.toLowerCase().includes(keyword)
-  )
-
-  res.json({
-    status: 'success',
-    total: results.length,
-    data: results
-  })
-})
-
+// Menangani error
 app.use((error, req, res, next) => {
   console.error(error)
-
-  if (error instanceof multer.MulterError) {
-    const message = error.code === 'LIMIT_FILE_SIZE'
-      ? 'Ukuran gambar maksimal 5 MB.'
-      : error.message
-
-    return res.status(400).json({
-      status: 'error',
-      message
-    })
-  }
 
   res.status(400).json({
     status: 'error',
@@ -350,10 +639,8 @@ app.use((error, req, res, next) => {
   })
 })
 
-if (!IS_VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`GadgetHub API running at http://localhost:${PORT}`)
-  })
-}
+app.listen(PORT, () => {
+  console.log(`GadgetHub API running at http://localhost:${PORT}`)
+})
 
 export default app

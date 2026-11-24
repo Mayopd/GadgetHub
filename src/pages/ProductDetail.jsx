@@ -26,8 +26,8 @@ function ProductDetail() {
       .then(data => {
         setProduct(data)
 
-        const gallery = data.images?.length
-          ? data.images
+        const gallery = data.galleryImages?.length
+          ? data.galleryImages
           : [data.image]
 
         setSelectedImage(gallery[0] || '')
@@ -53,8 +53,8 @@ function ProductDetail() {
     return <main className="page-container">Loading product...</main>
   }
 
-  const images = product.images?.length
-    ? product.images
+  const images = product.galleryImages?.length
+    ? product.galleryImages
     : (product.image ? [product.image] : [])
 
   return (
