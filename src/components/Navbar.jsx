@@ -25,8 +25,9 @@ function Navbar() {
         <NavLink to="/contact">Contact</NavLink>
       </nav>
 
-      <Link to="/search" className="search-button">
-        Search Product
+      <Link to="/search" className="search-button" aria-label="Search Product">
+        <span className="search-text">Search Product</span>
+        <span className="search-icon-mobile">⌕</span>
       </Link>
     </header>
   )
