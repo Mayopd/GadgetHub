@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "lint": "oxlint",
-  "preview": "vite preview",
-  "api": "node api/index.js",
-  "seed": "node scripts/seed-products.js"
-},
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "api": "node api/index.js",
+    "seed": "node scripts/seed-products.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",
     "cors": "^2.8.6",
