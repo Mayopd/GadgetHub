@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'logo.svg', 'pwa-icon.svg'],
+      includeAssets: ['logo.svg'],
       manifest: {
         name: 'GadgetHub',
         short_name: 'GadgetHub',
@@ -20,7 +20,7 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: '/pwa-icon.svg',
+            src: '/logo.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any maskable'
@@ -33,6 +33,9 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    chunkSizeWarningLimit: 1000
+  },
   server: {
     proxy: {
       '/api': {
